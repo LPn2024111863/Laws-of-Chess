@@ -81,5 +81,9 @@ NORMALTURN = "normturn " # hidden value that notifies a normal turn
 CARDMINIGAME = "cardmgame" # hidden value that notifies a turn with a card minigame
 GESTOR_ID = "gestor_id" # identifies the connection as a GESTOR
 CLIENTE_ID = "clienteid" # identifies the connection as a CLIENT
+LOGIN = "login    " # allows the client to log in
+ACTIVE = "active   "
 PORT = 35000
 SERVER_ADDRESS = "localhost"
+
+
