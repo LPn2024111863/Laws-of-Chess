@@ -3,6 +3,11 @@
 Laws of Chess is a multiplayer, client-server chess game implemented in Python. This game bring special cards to the game to make it more thoughtfull and inovative.
 The application features a robust server that handles matchmaking, game logic, and concurrent matches, along with separate clients for players and server administrators.
 
+
+## Members of the group
+* Gonçalo Arruda - 2024109624
+* Hernâni Araújo - 2024111863
+
 ## Features
 
 *   **Client-Server Architecture**: A dedicated server manages game state, connections, and matchmaking, allowing multiple games to run concurrently.
