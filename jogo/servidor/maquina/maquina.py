@@ -3,7 +3,7 @@ import servidor
 from servidor.client_list.lista_clientes import ListaCliente
 from servidor.matches.matchManager import MatchManager
 from servidor.processing_files.processa_cliente import ProcessaCliente
-from servidor.processing_files.processa_gestor import ProcessaGestor
+from servidor.processing_files.processa_administrator import ProcessaAdministrator
 import socket
 
 
@@ -78,7 +78,7 @@ class Maquina:
     def execute(self):
         """
         This method starts the server and checks whether the person joining the
-        server is a client or gestor
+        server is a client or administrator
         """
         self.s.listen(50)
         print("Waiting for clients on port " + str(servidor.PORT))
@@ -97,7 +97,7 @@ class Maquina:
 
             if identify == servidor.GESTOR_ID:
                 print(f"{address} identified as GESTOR")
-                processo = ProcessaGestor(connection, address, self.clientes, self.matchManager)
+                processo = ProcessaAdministrator(connection, address, self.clientes, self.matchManager)
 
             else:
                 print(f"{address} identified as CLIENTE")

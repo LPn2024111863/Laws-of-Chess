@@ -81,8 +81,10 @@ The administrator client provides a simple interface for monitoring the server:
 
 The next steps of this project include:
 *   Validation: A revaluation of the code to check for more errors or missing areas that might trigger inconsistencies.
+*   Chess Moves: Castling and En Passant will be implemented in the future.
 *   Progress Tracking: The accounts will be implemented in more detail so the players can check the wins, losses and win/lose ratio.
 *   Cards: New cards will be implemented with new abilities to use during the game!
 *   Timer: A timer will be implemented to limit the time the player has to play in a round.
 *   Game Modes: Laws of Chess contains currently only the full board of pieces. Further down the project will include situations like mid game or end game so player can enjoy different scenarios.
-*   Pygame: A graphic interface will be implemented so players have a more enjoyable experience
+*   Pygame: A graphic interface will be implemented so players have a more enjoyable experience.
+*   Administrator: Administrators will have more functionalities regarding the game's status and modifying it.
