@@ -17,9 +17,10 @@ The application features a robust server that handles matchmaking, game logic, a
     *   **Impressment**: Provides a chance to steal an opponent's piece and convert it to your side.
     *   **Promotion**: Instantly upgrade one of your pieces (e.g., Pawn to Bishop/Knight, Rook to Queen).
 *   **Card Acquisition Minigame**: During a match, players can compete in a quick minigame to acquire the cards.
-*   **Administrator (Gestor) Client**: A separate terminal client for administrators to monitor the server's status, including the number of online players and active games.
+*   **Administrator Client**: A separate terminal client for administrators to monitor the server's status, including the number of online players and active games.
 *   **Complete Chess Logic**: Implements all standard chess rules, including piece movements, check, checkmate, and stalemate detection.
-*   **Account System**: Players can log into accounts and the system tracks wins. **This is still under work** 
+*   **Account System**: Players can log into accounts and the system tracks wins. **This is still under work**
+
 
 ## Project Structure
 
@@ -31,11 +32,26 @@ The repository is organized into three main components:
     *   `pieces/`: Defines the behavior and movement rules for each chess piece.
     *   `cards/`: Implements the logic for the special ability cards.
     *   `accounts/`: Handles user account creation and data storage.
-    *   `processing_files/`: Manages communication threads for clients and gestors.
+    *   `processing_files/`: Manages communication threads for clients and administrators.
 *   `jogo/cliente/`: The player client application.
     *   `interface/`: The command-line interface for players to interact with the game.
-*   `jogo/gestor/`: The administrator client application.
+*   `jogo/administrator/`: The administrator client application.
     *   `interface/`: The command-line interface for administrators to query server stats.
+
+
+## Thread Functionalities
+
+The program is made with three main threads that can be created:
+
+* `ProcessaCliente`: This thread is responsible to handle the client's messages and each thread holds one client, making available the possibility to have many at the same time.
+    *   Started at: `maquina`, where the server checks for the client's ID and starts this thread if it corresponds to a client.
+      
+* `ProcessaAdministrador`: This thread is responsible to handle the administrator's messages and each thread holds one administrator, making available the possibility to have many  at the same time.
+   *   Started at: `maquina`, where the server checks for the administrator's ID and starts this thread if ID corresponds to a administrator.   
+
+*  `Start_game`: This thread is responsible to handle the game between two players.  
+   *   Started at: `matchManager`, being accessed by `ProcessaCliente`. When a client selects `play`, it is redirected into the matchmaking queue. If it is possible to start a game (there are two players in the queue), the thread starts and the game can begin. If not, the client is prompted to wait and no input can be made until someone joins the queue and the game starts. 
+
 
 ## How to Play
 
@@ -52,13 +68,13 @@ Once the client is running, you can use the following commands:
 *   `select`: During your turn, use this command to choose a piece to move. You will be prompted to enter the piece's square (e.g., `e2`) and then the destination square (e.g., `e4`).
 *   `cards`: During your turn, use this command to view your available cards and choose one to play.
 
-### Gestor Client Commands
+### Administrator Client Commands
 
 The administrator client provides a simple interface for monitoring the server:
 
 *   `online`: Displays the current number of players connected to the server.
 *   `games`: Displays the number of matches currently in progress.
-*   `.`: Disconnects the gestor client.
+*   `.`: Disconnects the administrator client.
 
 
 ## Next Features and Validations to be implemented
